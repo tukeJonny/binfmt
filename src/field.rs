@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 // FIXME: 固定長、可変長を区別するためにenumにするのはあり？
 #[derive(Debug, Serialize, Deserialize)]

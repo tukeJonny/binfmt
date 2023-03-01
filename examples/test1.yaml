@@ -1,13 +1,13 @@
 fields:
-  - name: Part1
+  - name: Part1 (32b)
     bitsize: 32
-  - name: Part2
+  - name: Part2 (8b)
     bitsize: 8
-  - name: Part3
+  - name: Part3 (128b)
     bitsize: 128
-  - name: Part4
+  - name: Part4 (16b)
     bitsize: 16
-  - name: Part5
+  - name: Part5 (40b)
     bitsize: 40
-  - name: Part6
+  - name: Part6 (16b)
     bitsize: 16
