@@ -1,4 +1,4 @@
-use anyhow::Result;
+use anyhow::{Result, Context};
 use clap::{crate_version, App, AppSettings, Arg};
 use std::env;
 use std::fmt::Write;
@@ -41,6 +41,17 @@ fn write_border(bs: BorderSize) -> Result<()> {
     Ok(())
 }
 
+fn slide_string(row: String) -> Result<String> {
+    let first = row.chars().nth(0).context("Failed to get first char of row")?;
+    if first.is_whitespace() {
+        let trimmed = &row[1..];
+        Ok(trimmed.to_string())
+    } else {
+        let trimmed = &row[1..row.len()-1];
+        Ok(format!("{}{}", first, trimmed))
+    }
+}
+
 fn build_app() -> App<'static, 'static> {
     let app = App::new("binfmt")
         .version(crate_version!())
@@ -77,7 +88,7 @@ fn main() {
     for mut row in canvas.into_iter() {
         if !str::starts_with(&row, DELIMITER) {
             print!("{DELIMITER}");
-            row.remove(0); // drop one whitespace
+            row = slide_string(row).expect("Failed to insert char");
         }
 
         if str::ends_with(row.as_str(), DELIMITER) {
