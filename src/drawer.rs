@@ -32,12 +32,15 @@ impl From<FieldDrawer> for SlicedCanvas {
         }
     }
 }
-
 impl Iterator for SlicedCanvas {
     type Item = String;
 
     fn next(&mut self) -> Option<Self::Item> {
-        self.slice.pop_front()
+        match self.slice.pop_front() {
+            Some(next_item) if next_item.len() < 2 => None,
+            Some(next_item) => Some(next_item),
+            None => None,
+        }
     }
 }
 

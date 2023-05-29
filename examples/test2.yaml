@@ -1,0 +1,11 @@
+fields:
+  - name: Part1 (32b)
+    bitsize: 32
+  - name: Part2 (8b)
+    bitsize: 8
+  - name: Part3 (128b)
+    bitsize: 128
+  - name: Part4 (16b)
+    bitsize: 16
+  - name: Part5 (8b)
+    bitsize: 8
