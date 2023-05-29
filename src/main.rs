@@ -1,4 +1,4 @@
-use anyhow::{Result, Context};
+use anyhow::{Context, Result};
 use clap::{crate_version, App, AppSettings, Arg};
 use std::env;
 use std::fmt::Write;
@@ -42,12 +42,15 @@ fn write_border(bs: BorderSize) -> Result<()> {
 }
 
 fn slide_string(row: String) -> Result<String> {
-    let first = row.chars().nth(0).context("Failed to get first char of row")?;
+    let first = row
+        .chars()
+        .nth(0)
+        .context("Failed to get first char of row")?;
     if first.is_whitespace() {
         let trimmed = &row[1..];
         Ok(trimmed.to_string())
     } else {
-        let trimmed = &row[1..row.len()-1];
+        let trimmed = &row[1..row.len() - 1];
         Ok(format!("{}{}", first, trimmed))
     }
 }
